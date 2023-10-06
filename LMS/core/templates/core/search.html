@@ -1,0 +1,36 @@
+{% extends 'core/base2.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... (Head content and CSS links) ... -->
+</head>
+<body>
+    <!-- Navbar ... -->
+
+    <div class="container mt-4">
+        <h1>Search Results</h1>
+        <form method="get" class="mb-3">
+            {{ form.query }}
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+        {% if query %}
+            <p>Search results for: "{{ query }}"</p>
+        {% endif %}
+        <ul>
+            {% for book in books %}
+                <li>{{ book.title }} by {{ book.author }} (Category: {{ book.category }})</li>
+            {% empty %}
+                <li>No books found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Page content ... -->
+</body>
+</html>
+
+
+
+{% endblock %}

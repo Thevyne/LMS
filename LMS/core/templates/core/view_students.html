@@ -1,0 +1,24 @@
+{% extends "core/base2.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... (Head content) ... -->
+</head>
+<body>
+    <h1>All Students</h1>
+    <ul>
+        {% for student in students %}
+            <li>{{ student.user.username }} (ID: {{ student.student_id }})</li>
+            <!-- Display other student details as needed -->
+        {% empty %}
+            <li>No students found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+
+{% endblock %}

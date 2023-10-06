@@ -1,0 +1,24 @@
+{% extends 'core/base2.html' %}
+
+{% block content %}
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+<!-- Display pending book requests -->
+<h3>Pending Book Requests</h3>
+
+<ul>
+    {% for request in requests %}
+    <li>
+        {{ request.student.username }} requested {{ request.book.title }}
+        <a href="{% url 'approve_request' request.id %}" class="btn btn-success">Approve</a>
+    </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

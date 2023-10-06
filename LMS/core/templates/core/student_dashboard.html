@@ -1,0 +1,23 @@
+{% extends 'core/base2.html' %}
+
+{% block content %}
+
+<h1>Welcome to the Student Dashboard</h1>
+<p>Your Student ID is: {{ student_id }}</p>
+
+<h3>Available Books</h3>
+<ul>
+    {% for book in available_books %}
+    <li>{{ book.title }}</li>
+    <!-- Add other book information here -->
+    {% endfor %}
+</ul>
+
+<h3>Unavailable Books</h3>
+<ul>
+    {% for book in unavailable_books %}
+    <li>{{ book.title }}</li>
+    <!-- Add other book information here -->
+    {% endfor %}
+</ul>
+{% endblock %}

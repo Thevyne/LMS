@@ -1,0 +1,29 @@
+{% extends 'core/base2.html' %}
+
+{% block content %}
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+<!-- Display available books -->
+<h3>Available Books</h3>
+
+<ul>
+    {% for book in books %}
+    <li>
+        {{ book.title }}
+        {% if book.is_pending %}
+        <span class="badge badge-warning">Pending</span>
+        {% else %}
+        <a href="{% url 'request_book' book.id %}" class="btn btn-primary">Request</a>
+        {% endif %}
+    </li>
+    <!-- Add other book information here -->
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

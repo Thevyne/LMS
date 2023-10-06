@@ -1,0 +1,42 @@
+{% extends "core/base2.html"%}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... (Head content and CSS links) ... -->
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, Admin</h1>
+        <h2>Book Availability</h2>
+        <form method="post">
+            {% csrf_token %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Available Copies</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>
+                            <input type="number" name="available_copies_{{ book.id }}" value="{{ book.available_copies }}">
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Update Availability</button>
+        </form>
+    </div>
+    <!-- Page content ... -->
+</body>
+</html>
+
+
+{% endblock %}

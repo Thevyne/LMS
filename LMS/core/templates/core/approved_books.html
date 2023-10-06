@@ -1,0 +1,11 @@
+{% extends 'core/base2.html' %}
+
+{% block content %}
+<h1>Approved Books</h1>
+<ul>
+    {% for book in approved_books %}
+    <li>{{ book.title }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+

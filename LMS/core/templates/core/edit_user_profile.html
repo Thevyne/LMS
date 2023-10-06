@@ -1,0 +1,24 @@
+{% extends "core/base2.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... (Head content) ... -->
+</head>
+<body>
+    <h1>Edit Profile</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Save Profile</button>
+    </form>
+
+    <a href="{% url 'user_profile' %}" class="btn btn-secondary">Cancel</a>
+</body>
+</html>
+
+
+
+{% endblock %}

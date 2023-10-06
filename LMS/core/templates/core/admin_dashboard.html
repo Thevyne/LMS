@@ -1,0 +1,46 @@
+{% extends 'core/base2.html' %}
+
+{% block content %}
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+  <h2>Add Book</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Add Book</button>
+  </form>
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+</head>
+
+  <h2>Books List</h2>
+  <ul>
+    {% for book in books %}
+      <li>
+        {{ book.title }} by {{ book.author }} {{book.category}} 
+        {% if book.available %}
+          <a href="{% url 'update_availability' book.id %}" class="btn btn-success">Mark as Unavailable</a>
+        {% else %}
+          <a href="{% url 'update_availability' book.id %}" class="btn btn-warning">Mark as Available</a>
+        {% endif %}
+        <td>
+            <a href="{% url 'update_copies_available' book.id %}" action = "increment" class="btn btn-success">+</a>
+            <h3>Available copies: {{book.available_copies}}</h3>
+            <a href="{% url 'update_copies_available' book.id %}" action = decrement class="btn btn-warning">-</a>
+          
+      </td>
+        <a href="{% url 'delete_book' book.id %}" class="btn btn-danger">Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

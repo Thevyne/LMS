@@ -1,0 +1,31 @@
+{% extends "core/base2.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... (Head content) ... -->
+</head>
+<body>
+    <h1>Search Students</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <h2>Search Results:</h2>
+    <ul>
+        {% for student in students %}
+            <li>{{ student.user.username }} (ID: {{ student.student_id }})</li>
+            <!-- Display other student details as needed -->
+        {% empty %}
+            <li>No students found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+
+{% endblock %}
